@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 // import "./styles.css";
+import cineImage from '../../assets/Cine.png';
 import { Link, useNavigate } from "react-router-dom";
 import {auth} from "/src/config/firebase"
 // import {user} from '../hooks/useAuth';
@@ -28,7 +29,7 @@ const Header = () => {
     return (
         <div className="header fixed  top-0 w-full h-16 bg-black bg-opacity-50 z-50 flex justify-between max-bs:h-12">
             <div className="headerLeft px-3 flex items-center h-full max-md:px-0">
-                <Link to="/home"><img className="header__icon w-32 mt-1 max-bs:w-24" src="../../assets/Cine.png" alt="CineCrush" /></Link>
+                <Link to="/home"><img className="header__icon w-32 mt-1 max-bs:w-24" src={cineImage} alt="CineCrush" /></Link>
                 <Link to="/movies" style={{ textDecoration: "none" }}><span className="px-4 text-base text-center hover:text-neutral-400 max-bs:text-sm max-bs:px-2 " >Movies</span></Link>
                 <Link to ="/tvshows" style={{ textDecoration: "none" }}><span className="px-4 text-base text-center hover:text-neutral-400 max-bs:text-sm max-bs:px-3 max-sm:w-auto">TV Shows</span> </Link>
             </div>

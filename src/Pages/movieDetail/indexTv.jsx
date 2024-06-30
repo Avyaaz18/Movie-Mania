@@ -5,6 +5,7 @@ import axios from "axios";
 import YouTube from "react-youtube";
 
 const TvShow = () => {
+  const apiKey = import.meta.env.VITE_TMDB_API_KEY;
   const [currentMovieDetail, setMovie] = useState(null);
   const [trailer, setTrailer] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -22,7 +23,7 @@ const TvShow = () => {
           `https://api.themoviedb.org/3/tv/${id}`,
           {
             params: {
-              api_key: "7dc223e69f74062b15d075926e1283d3",
+              api_key: import.meta.env.VITE_TMDB_API_KEY,
               append_to_response: "videos",
             },
           }
@@ -50,7 +51,7 @@ const TvShow = () => {
           `https://api.themoviedb.org/3/tv/${id}/credits`,
           {
             params: {
-              api_key: "7dc223e69f74062b15d075926e1283d3",
+              api_key:import.meta.env.VITE_TMDB_API_KEY,
               language: "en-US",
             },
           }

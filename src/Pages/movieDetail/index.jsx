@@ -23,7 +23,7 @@ const Movie = () => {
           `https://api.themoviedb.org/3/movie/${id}`,
           {
             params: {
-              api_key: "7dc223e69f74062b15d075926e1283d3",
+              api_key: import.meta.env.VITE_TMDB_API_KEY,
               append_to_response: "videos",
             },
           }
@@ -31,7 +31,6 @@ const Movie = () => {
 
         setMovie(data);
 
-        // Find official trailer
         if (data.videos && data.videos.results.length > 0) {
           const officialTrailer = data.videos.results.find(
             (vid) => vid.name === "Official Trailer"
@@ -53,7 +52,7 @@ const Movie = () => {
           `https://api.themoviedb.org/3/movie/${id}/credits`,
           {
             params: {
-              api_key: "7dc223e69f74062b15d075926e1283d3",
+              api_key: import.meta.env.VITE_TMDB_API_KEY,
               language: "en-US",
             },
           }

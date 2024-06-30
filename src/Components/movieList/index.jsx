@@ -5,6 +5,7 @@ import Cards from "../cards/card";
 import Footer from "../footer/footer";
 
 const MovieList = ({type}) => {
+    const apiKey = import.meta.env.VITE_TMDB_API_KEY;
     const {term} = useParams();
     const [movieList, setMovieList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -20,8 +21,8 @@ const MovieList = ({type}) => {
     const getData = async() => {
         if (term) {
             try{
-            const moviesUrl = `https://api.themoviedb.org/3/search/movie?api_key=7dc223e69f74062b15d075926e1283d3&query=${term}`;
-            const tvShowsUrl = `https://api.themoviedb.org/3/search/tv?api_key=7dc223e69f74062b15d075926e1283d3&query=${term}`;
+            const moviesUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${term}`;
+            const tvShowsUrl = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${term}`;
 
             const [moviesResponse, tvShowsResponse] = await Promise.all([
                 fetch(moviesUrl),
@@ -39,7 +40,7 @@ const MovieList = ({type}) => {
             (error => console.error("Error fetching data:", error)); 
         }
         } else {
-        let url = `https://api.themoviedb.org/3/${type === "tv" ? "tv/top_rated" : "movie/popular"}?api_key=7dc223e69f74062b15d075926e1283d3&language=en-US&page=${currentPage}`; 
+        let url = `https://api.themoviedb.org/3/${type === "tv" ? "tv/top_rated" : "movie/popular"}?api_key=${apiKey}&language=en-US&page=${currentPage}`; 
         try{
         let response = await fetch(url);
         let data = await response.json();

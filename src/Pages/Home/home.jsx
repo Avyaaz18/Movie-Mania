@@ -7,6 +7,7 @@ import ScrollableCarousel from "../../Components/HorizontalScroll/index";
 import Footer from "../../Components/footer/footer";
 
 export default function Home() {
+    const apiKey = import.meta.env.VITE_TMDB_API_KEY;
     const [ popularMovies, setPopularMovies ] = useState([])
 
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 480);
@@ -23,7 +24,7 @@ export default function Home() {
     }, []);
 
     useEffect(()=>{async function fetchData(){
-       let response = await fetch("https://api.themoviedb.org/3/trending/all/day?api_key=7dc223e69f74062b15d075926e1283d3&language=en-US")
+       let response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${apiKey}&language=en-US`)
        let data = await response.json();
        setPopularMovies(data.results);
        console.log(data.results);
@@ -65,10 +66,10 @@ export default function Home() {
                 </Carousel>
             </div>
             <div className="bg-gray-900">
-            <ScrollableCarousel fetchUrl="https://api.themoviedb.org/3/trending/tv/day?api_key=7dc223e69f74062b15d075926e1283d3&language=en-US" title="Trending Tv Shows" />
-            <ScrollableCarousel fetchUrl="https://api.themoviedb.org/3/movie/popular?api_key=7dc223e69f74062b15d075926e1283d3&language=en-US" title="Popular Movies" />
-            <ScrollableCarousel  fetchUrl="https://api.themoviedb.org/3/movie/top_rated?api_key=7dc223e69f74062b15d075926e1283d3&language=en-US" title="Top Rated Movies" />
-            <ScrollableCarousel fetchUrl="https://api.themoviedb.org/3/tv/on_the_air?api_key=7dc223e69f74062b15d075926e1283d3&language=en-US" title="On Air Shows" />
+            <ScrollableCarousel fetchUrl={`https://api.themoviedb.org/3/trending/tv/day?api_key=${apiKey}&language=en-US`} title="Trending Tv Shows" />
+            <ScrollableCarousel fetchUrl={`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US`} title="Popular Movies" />
+            <ScrollableCarousel  fetchUrl={`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US`} title="Top Rated Movies" />
+            <ScrollableCarousel fetchUrl={`https://api.themoviedb.org/3/tv/on_the_air?api_key=${apiKey}&language=en-US`} title="On Air Shows" />
        </div> 
        <Footer></Footer></div>
     )

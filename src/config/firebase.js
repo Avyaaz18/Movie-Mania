@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBlIi0bvxqxF3NjEd3Ie3-pMrvD_2fhWp8",
-  authDomain: "moviemania-566f7.firebaseapp.com",
-  projectId: "moviemania-566f7",
-  storageBucket: "moviemania-566f7.appspot.com",
-  messagingSenderId: "51108527646",
-  appId: "1:51108527646:web:fb8c88e877ce67d531780f",
-  measurementId: "G-H8T2ZTKV6B"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
 };
 
 const app = initializeApp(firebaseConfig);

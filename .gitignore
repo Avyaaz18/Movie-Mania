@@ -66,11 +66,6 @@ package-lock.json
 *.swp
 *.bak
 
-# Tailwind CSS specific
-tailwind.config.js
-tailwind.config.ts
-postcss.config.js
-
 # Firebase functions
 functions/node_modules
 functions/.runtimeconfig.json

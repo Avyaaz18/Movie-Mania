@@ -28,7 +28,6 @@ const TvShow = () => {
             },
           }
         );
-        console.log(data);
         setMovie(data);
 
         if (data.videos && data.videos.results.length > 0) {

@@ -27,7 +27,7 @@ export default function Home() {
        let response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${apiKey}&language=en-US`)
        let data = await response.json();
        setPopularMovies(data.results);
-       console.log(data.results);
+    //    console.log(data.results);
     }
     fetchData();
  },[])

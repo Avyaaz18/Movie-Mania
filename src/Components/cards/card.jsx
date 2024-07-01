@@ -10,7 +10,6 @@ const Cards = ({movie,title,index}) => {
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false)
-            console.log(movie)
         }, 1500)
     }, []) 
 

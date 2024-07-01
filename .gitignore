@@ -18,7 +18,6 @@ dist
 dist-ssr
 out
 build
-public
 *.local
 
 # Firebase directories

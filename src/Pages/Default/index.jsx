@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import back from '/src/assets/img1.jpg'; 
 import {auth, provider, signInWithPopup} from "/src/config/firebase"
@@ -11,23 +11,36 @@ export default function GetStarted() {
   const [showAlert, setShowAlert] = useState(false); 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
       setUser(result.user);
       setShowWarning(false);
       setShowAlert(true);
+      console.log("sign in ")
     } catch (error) {
       console.error('Error during Google sign-in:', error);
     }
   };
 
   const handleGetStarted = () => { 
-    if (!user) {
+    if (user) {
+      navigate('/home');
+    } else {
       setShowAlert(true);
       setShowWarning(true);
-    } else {
-      navigate('/home');
     }
   };
 
@@ -38,13 +51,15 @@ export default function GetStarted() {
       <h1 className='text-5xl mb-5'>Welcome to Movie Mania!</h1>
       <p className='text-xl mb-8'>Your one-stop destination for all movies. Explore top-rated films, latest releases, and timeless classics.</p>
       <div className='flex items-center justify-center'>
-      <button type="button" className={`text-white bg-[#4285F4] hover:bg-[#4285F4]/90 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 me-2 mb-2 ${user?"hidden":null}`} onClick={handleGoogleSignIn}>
+      {!user && (
+      <button type="button" className={`text-white bg-[#4285F4] hover:bg-[#4285F4]/90 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 me-2 mb-2`} onClick={handleGoogleSignIn}>
       <svg className="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
       <path fillRule="evenodd" d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" clipRule="evenodd"/>
       </svg>
       Sign in with Google
       </button>
-        <button type="button" className="get-started-button text-center text-whitetext-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l font-medium rounded-lg text-base px-6 py-2  me-2 mb-2 border-none cursor-pointer transition-colors duration-300 ease-in-out font-serif"  onClick={()=>handleGetStarted()}>
+      )}
+        <button type="button" className="get-started-button text-center text-whitetext-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l font-medium rounded-lg text-base px-6 py-2  me-2 mb-2 border-none cursor-pointer transition-colors duration-300 ease-in-out font-serif" disabled={!user} onClick={handleGetStarted}>
           Get Started <i className="fa-solid fa-chevron-right text-base"></i>
         </button>
       </div>
@@ -54,4 +69,3 @@ export default function GetStarted() {
   );
 }
 
-// export default GetStarted;

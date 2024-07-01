@@ -11,7 +11,7 @@ const Movie = () => {
   const [error, setError] = useState(null);
   const [cast, setCast] = useState([]);
   const { id } = useParams();
-  const [showModal, setShowModal] = useState(false); // State for modal visibility
+  const [showModal, setShowModal] = useState(false); 
 
   useEffect(() => {
     const fetchMovieData = async () => {

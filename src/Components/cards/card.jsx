@@ -13,9 +13,8 @@ const Cards = ({movie,title,index}) => {
         }, 1500)
     }, []) 
 
-      // Check if the movie has a poster_path
+      
   if (!movie || !movie.poster_path) {
-    // If no poster_path, return null (do not render anything)
     return null;
   }
 

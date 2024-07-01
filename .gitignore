@@ -26,13 +26,6 @@ firebase-debug.log
 .firebase
 firestore-debug.log
 
-# Firebase settings
-firebase.json
-.firestoreindexes.json
-.storage.rules
-.database.rules.json
-.firebasehosting
-
 # Generated files
 npm-package-lock.json
 yarn.lock
@@ -72,5 +65,3 @@ functions/.runtimeconfig.json
 functions/package-lock.json
 functions/yarn.lock
 
-# Firebase hosting cache
-.firebase/

@@ -10,8 +10,15 @@ const Cards = ({movie,title,index}) => {
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false)
+            console.log(movie)
         }, 1500)
     }, []) 
+
+      // Check if the movie has a poster_path
+  if (!movie || !movie.poster_path) {
+    // If no poster_path, return null (do not render anything)
+    return null;
+  }
 
     return <>
     {
@@ -35,7 +42,7 @@ const Cards = ({movie,title,index}) => {
                     <div className="card__title font-black text-xl mb-2">{movie?movie.original_title?movie.original_title:movie.original_name:""}</div>
                     <div className="card__runtime text-xs mb-1">
                         {movie?movie.release_date?movie.release_date:movie.first_air_date:""}
-                        <span className="card__rating float-right">{movie?movie.vote_average.toFixed(2):""}<i className="fas fa-star ml-1 hover:text-yellow-400" /></span>
+                        <span className="card__rating float-right">{movie&& movie.vote_average?movie.vote_average.toFixed(2):""}<i className="fas fa-star ml-1 hover:text-yellow-400" /></span>
                     </div>
                     <div className="card__description italic text-xs mb-1 ">{movie ? movie.overview.slice(0,100)+"..." : ""}</div>
                 </div>

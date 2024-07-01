@@ -236,7 +236,8 @@ const TvShow = () => {
         <h1 className="max-bs:text-base text-2xl mb-5 font-semibold drop-shadow-md md:max-lg:text-xl max-md:text-base">Cast & Crew</h1>
         <br />
         <div className="movie__cast max-md:w-11/12 max-bs:w-[98%] w-3/4 flex flex-wrap gap-4 content-center items-center">
-          {cast.slice(0, 10).map((member) => (
+          {cast && cast.map((member) => (
+            (member.profile_path &&
             <div
             key={member.id}
             className="cast-member max-md:w-[150px] max-bs:[130px] flex flex-col items-center text-center min-w-44 max-w-44 h-auto">
@@ -250,7 +251,7 @@ const TvShow = () => {
                 as {member.character}
               </div>
             </div>
-          ))}
+          )))}
         </div>
       </div>
     </div>

@@ -11,6 +11,7 @@ Welcome to Movie Mania, your ultimate destination for all movies! This project i
 - View detailed information about each movie or TV show, including synopsis, cast, and trailers.
 - Google authentication using Firebase for user sign-in.
 - Watch trailers directly from YouTube for selected movies.
+- Save your favorite movies and TV shows to easily access them later.
 
 ## 🖼️Screenshots
 
@@ -18,9 +19,9 @@ Welcome to Movie Mania, your ultimate destination for all movies! This project i
 
 ![Home Page](./screenshots/home-page.png)
 
-### 🎥Movie Detail Page
+### 🎥Favourite Shows Page
 
-![Movie Detail Page](./screenshots/movie-detail.png)
+![Favourite Shows Page](./screenshots/favourite-movies.png)
 
 ### 🔍Search Results Page
 
@@ -50,10 +51,14 @@ To deploy your own instance, follow these steps:
 1. Configure your Vercel account and project settings.
 2. Set up environment variables for API keys or other sensitive information.
 3. Deploy your project using Vercel's CLI or GitHub integration.
-
-## 🤝Contributing
-
-Contributions are welcome! Please open an issue or pull request for any changes or improvements you would like to propose.
+4. Generate API keys for Firebase and TMDb.
+   - Create a Firebase project and generate Firebase Web API keys.
+   - Sign up for a TMDb API key and store it in your `.env` file.
+   ```plaintext
+   VITE_FIREBASE_API_KEY=your_firebase_api_key
+   VITE_TMDB_API_KEY=your_tmdb_api_key
+   etc....
+   ```
 
 ## 🔮Future Enhancements
 

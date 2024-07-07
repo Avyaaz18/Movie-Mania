@@ -75,7 +75,8 @@ const Movie = () => {
   }
 
   return (
-    <div className="movie w-full bg-black relative flex flex-col items-center">
+    <div className="bg-black">
+    <div className="movie w-full bg-black relative flex flex-col items-center overflow-hidden">
       <div className="movie__intro w-4/5 max-sm:w-11/12">
         <img
           className="movie__backdrop w-full h-fit object-cover rounded-xl shadow-lg "
@@ -241,16 +242,16 @@ const Movie = () => {
           navigate("/home");
         }}
       >
-        <i className="fa-solid fa-chevron-left text-xs mr-1"></i>{" "}
+        <i className="fa-solid fa-chevron-left text-xs mr-1 "></i>{" "}
         <span>Back</span>
       </button>
-      <div className="bg-black">
+
+    </div>      <div className="bg-black">
         <ScrollableCarousel
           fetchUrl={`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${apiKey}&language=en-US&page=1`}
           title="You May Also Like"
         />
-      </div>
-    </div>
+      </div></div>
   );
 };
 

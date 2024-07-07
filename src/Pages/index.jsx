@@ -12,6 +12,10 @@ const Favourites = () => {
 
   useEffect(() => {
     const fetchFavouriteItems = async () => {
+      if (favourites.length === 0) {
+        setLoading(false); // No favourites to fetch
+        return;
+      }
       setLoading(true);
       const itemsDetails = [];
       for (let itemId of favourites) {
@@ -47,7 +51,8 @@ const Favourites = () => {
         } catch (error) {
           console.error(`Error fetching details for ID ${itemId}:`, error);
         } finally {
-          setLoading(false);
+          // Check if all requests are completed
+            setLoading(false);
         }
       }
       setFavouriteItems(itemsDetails);

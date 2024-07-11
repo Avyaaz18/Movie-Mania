@@ -37,9 +37,13 @@ export default function GetStarted() {
             Your one-stop destination for all movies. Explore top-rated films,
             latest releases, and timeless classics.
           </p>
-          <p className="text-lg mb-3">
-            Please sign in to access full functionality.
-          </p>
+          {user ? (
+            ""
+          ) : (
+            <p className="text-lg mb-3">
+              Please sign in to access full functionality.
+            </p>
+          )}
           <div className="flex items-center justify-center">
             {/* {!user && (
       <button type="button" className={`text-white bg-[#4285F4] hover:bg-[#4285F4]/90 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 me-2 mb-2`} onClick={handleGoogleSignIn}>

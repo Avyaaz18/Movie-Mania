@@ -4,6 +4,10 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import YouTube from "react-youtube";
 import Loading from "../Components/loading";
+import NotFound from "./error";
+import { useAuth } from "../config/AuthContext";
+import StarRating from "../Components/starRating";
+import CastDetails from "../Components/castDetails";
 
 const TvShow = () => {
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
@@ -15,6 +19,7 @@ const TvShow = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchMovieData = async () => {
@@ -69,7 +74,7 @@ const TvShow = () => {
   }
 
   if (error) {
-    return <div className="error">{error}</div>;
+    return <NotFound error={error}></NotFound>;
   }
 
   return (
@@ -119,6 +124,7 @@ const TvShow = () => {
               ) : (
                 "No rating available"
               )}
+              <StarRating movieId={`tv${id}`} user={user} />
             </div>
             <div className="movie__runtime drop-shadow-md max-xs:text-sm">
               {currentMovieDetail?.number_of_seasons
@@ -195,40 +201,7 @@ const TvShow = () => {
           </div>
         </div>
       </div>
-      <div
-        className={`movie-cast max-md:bottom-[150px] max-bs:bottom-[120px] max-xs:bottom-[60px] flex justify-center items-center flex-col mt-8 relative bottom-52${
-          showModal ? "active" : "inactive relative"
-        }`}
-      >
-        <h1 className="max-bs:text-base text-2xl mb-5 font-semibold drop-shadow-md md:max-lg:text-xl max-md:text-base">
-          Cast & Crew
-        </h1>
-        <br />
-        <div className="movie__cast max-md:w-11/12 max-bs:w-[98%] w-3/4 flex flex-wrap  gap-4 justify-center items-center">
-          {cast &&
-            cast.slice(0, 20).map(
-              (member) =>
-                member.profile_path && (
-                  <div
-                    key={member.id}
-                    className="cast-member max-md:w-[150px] max-bs:[130px] flex flex-col items-center text-center min-w-44 max-w-44 h-auto"
-                  >
-                    <img
-                      src={`https://image.tmdb.org/t/p/w200${member.profile_path}`}
-                      alt={member.name}
-                      className="cast-member__image h-full min-h-[270px] bg-gray-300 w-full rounded-lg"
-                    />
-                    <div className="cast-member__name mt-1.5 font-bold">
-                      {member.name}
-                    </div>
-                    <div className="cast-member__character italic text-gray-600">
-                      as {member.character}
-                    </div>
-                  </div>
-                )
-            )}
-        </div>
-      </div>
+      <CastDetails cast={cast} showModal={showModal} />
       <button
         type="button"
         className="my-4 max-bs:my-2 text-center text-whitetext-white bg-gradient-to-r from-red-600 to-pink-700 hover:bg-gradient-to-l font-medium rounded-md text-base px-6 py-2  me-2  border-none cursor-pointer transition-colors duration-300 ease-in-out font-serif flex items-center"

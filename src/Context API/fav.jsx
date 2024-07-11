@@ -8,16 +8,24 @@ const FavouriteProvider = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      getFavorites().then(setFavourites);
+      // Fetch the user's favorite items and update the state with the fetched items
+      getFavorites()
+        .then(setFavourites)
+        .catch((error) => {
+          console.error("Error fetching favorites:", error);
+        });
     }
   }, [user]);
 
   const toggleFavourite = async (itemId) => {
     try {
+      //.some() returns true if the id is already present
       if (favourites.some((fav) => fav === itemId)) {
+        // If the item is already in favourites, remove it
         await removeFromFavorites(itemId);
         setFavourites((prev) => prev.filter((id) => id !== itemId));
       } else {
+        // If the item is not in favourites, add it
         await addToFavorites(itemId);
         setFavourites((prev) => [...prev, itemId]);
       }

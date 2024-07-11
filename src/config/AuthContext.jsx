@@ -72,6 +72,7 @@ export function AuthContextProvider({ children }) {
 
   const addToFavorites = async (showId) => {
     if (!user) return;
+    // Add a new document in collection "users"
     const userDocRef = doc(db, "users", user.uid);
     await setDoc(userDocRef, {}, { merge: true });
     await updateDoc(userDocRef, {
@@ -94,6 +95,29 @@ export function AuthContextProvider({ children }) {
     return userDocSnap.exists() ? userDocSnap.data().favorites || [] : [];
   };
 
+  const handleRating = async (movieId, rating) => {
+    if (!user) return [];
+    const userDocRef = doc(db, "users", user.uid);
+    const userDocSnap = await getDoc(userDocRef);
+    const userData = userDocSnap.data() || {};
+    const updatedRatings = {
+      ...userData.ratings,
+      [movieId]: rating,
+    };
+    await setDoc(userDocRef, { ratings: updatedRatings }, { merge: true });
+  };
+
+  const getUserRating = async (movieId) => {
+    if (!user) return 0;
+    const userDocRef = doc(db, "users", user.uid);
+    const userDocSnap = await getDoc(userDocRef);
+    if (userDocSnap.exists()) {
+      const userData = userDocSnap.data() || {};
+      return userData.ratings ? userData.ratings[movieId] || 0 : 0;
+    }
+    return 0;
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -105,6 +129,8 @@ export function AuthContextProvider({ children }) {
         addToFavorites,
         removeFromFavorites,
         getFavorites,
+        handleRating,
+        getUserRating,
       }}
     >
       {children}

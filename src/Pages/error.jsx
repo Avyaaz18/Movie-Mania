@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-const NotFound = () => {
+const NotFound = ({ error }) => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
@@ -10,9 +10,13 @@ const NotFound = () => {
   return (
     <div className="h-screen flex flex-col items-center justify-center bg-gray-900 text-center p-4">
       <h1 className="text-4xl font-bold mb-4">404 - Page Not Found</h1>
-      <p className="text-lg mb-6">
-        Oops! The page you are looking for doesn't exist.
-      </p>
+      {error ? (
+        <p className="text-lg mb-6">{error}</p>
+      ) : (
+        <p className="text-lg mb-6">
+          Oops! The page you are looking for doesn't exist.
+        </p>
+      )}
       <img
         src="/src/assets/er1.png"
         alt="404 Illustration"

@@ -19,6 +19,12 @@ const Cards = ({ movie, title, index }) => {
     return null;
   }
 
+  const truncateText = (text, charLimit) => {
+    if (!text) return "";
+    if (text.length <= charLimit) return text;
+    return text.slice(0, charLimit) + "...";
+  };
+
   return (
     <>
       {isLoading ? (
@@ -44,7 +50,7 @@ const Cards = ({ movie, title, index }) => {
                 #{index + 1} Trending
               </div>
             )}
-            {user?
+            {user ? (
               <div
                 className={`absolute top-4 left-44 cursor-pointer  ${
                   favourites.includes(
@@ -69,14 +75,19 @@ const Cards = ({ movie, title, index }) => {
                       : "regular"
                   } fa-heart max-md:text-sm z-50`}
                 ></i>
-              </div>:""
-            }
+              </div>
+            ) : (
+              ""
+            )}
             <div className="absolute bottom-0 p-4 pt-0 flex flex-col justify-end w-[85%] h-full bg-gradient-to-l from-transparent to-black bg-opacity-50 opacity-0 transition-opacity duration-200 hover:opacity-100">
               <div className="font-black text-xl mb-2">
                 {movie
-                  ? movie.original_title
-                    ? movie.title || movie.original_title
-                    : movie.name || movie.original_name
+                  ? truncateText(
+                      movie.original_title
+                        ? movie.title || movie.original_title
+                        : movie.name || movie.original_name,
+                      35
+                    )
                   : ""}
               </div>
               <div className="text-xs mb-1">
@@ -93,7 +104,7 @@ const Cards = ({ movie, title, index }) => {
                 </span>
               </div>
               <div className=" italic text-xs mb-1 ">
-                {movie ? movie.overview.slice(0, 100) + "..." : ""}
+                {movie ? truncateText(movie.overview, 100) : ""}
               </div>
             </div>
           </div>

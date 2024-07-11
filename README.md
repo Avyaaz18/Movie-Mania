@@ -13,19 +13,15 @@ Welcome to Movie Mania, your ultimate destination for all movies! This project i
 - Watch trailers directly from YouTube for selected movies.
 - Save your favorite movies and TV shows to easily access them later.
 
-## 🖼️Screenshots
+<!-- ## 🖼️Screenshots
 
 ### 🏠Home Page
 
-![Home Page](./screenshots/home-page.png)
+![Home Page](./screenshots/home-page.png) -->
 
 ### 🎥Favourite Shows Page
 
 ![Favourite Shows Page](./screenshots/favourite-movies.png)
-
-### 🔍Search Results Page
-
-![Search Results Page](./screenshots/search-results.png)
 
 ## 🛠️Technologies Used
 
@@ -33,6 +29,7 @@ Welcome to Movie Mania, your ultimate destination for all movies! This project i
 - Tailwind CSS
 - TMDb API
 - Firebase Authentication
+- Firestore Database
 
 ## 🚀Getting Started
 
@@ -40,7 +37,14 @@ To run this project locally, follow these steps:
 
 1. Clone the repository.
 2. Install dependencies using `npm install`.
-3. Start the development server with `npm run dev`.
+3. Generate API keys for Firebase and TMDb.
+   - Create a Firebase project and generate Firebase Web API keys.
+   - Sign up for a TMDb API key and store it in your `.env` file.
+   ```plaintext
+   VITE_FIREBASE_API_KEY=your_firebase_api_key
+   VITE_TMDB_API_KEY=your_tmdb_api_key
+   ```
+4. Start the development server with `npm run dev`.
 
 ## 🌐Deployment
 
@@ -51,14 +55,6 @@ To deploy your own instance, follow these steps:
 1. Configure your Vercel account and project settings.
 2. Set up environment variables for API keys or other sensitive information.
 3. Deploy your project using Vercel's CLI or GitHub integration.
-4. Generate API keys for Firebase and TMDb.
-   - Create a Firebase project and generate Firebase Web API keys.
-   - Sign up for a TMDb API key and store it in your `.env` file.
-   ```plaintext
-   VITE_FIREBASE_API_KEY=your_firebase_api_key
-   VITE_TMDB_API_KEY=your_tmdb_api_key
-   etc....
-   ```
 
 ## 🔮Future Enhancements
 

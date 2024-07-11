@@ -19,6 +19,7 @@ import SignUp from "./Pages/signUp";
 import SignIn from "./Pages/signIn";
 import GenreMovies from "./Components/genreMovies";
 import UserProfile from "./Pages/profile";
+import AboutUs from "./Components/About";
 
 function App() {
   function Layout() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/" element={<GetStarted />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<SignIn />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/home" element={<Home />} />
           <Route path="/favourites" element={<FavouritePage />} />
           <Route path="/search/:term" element={<MovieList />} />

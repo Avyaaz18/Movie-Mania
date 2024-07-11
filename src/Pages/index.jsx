@@ -5,6 +5,11 @@ import Empty from "../assets/emptyIllustration.png";
 import Loading from "../Components/loading";
 
 const Favourites = () => {
+  // favourites is the array present in firestore database which consists of id of movies
+  // upon clicking fav(icon) getFavourites function gets called and sets the id's in db in favourites using setFavourites state var
+  // favouriteItems is the data of the id present in the favourites
+  // using this data will be sent to the Cards Component to render the card  of the id's present in the favourites array
+
   const { favourites } = useContext(store);
   const [favouriteItems, setFavouriteItems] = useState([]);
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
@@ -52,7 +57,7 @@ const Favourites = () => {
           console.error(`Error fetching details for ID ${itemId}:`, error);
         } finally {
           // Check if all requests are completed
-            setLoading(false);
+          setLoading(false);
         }
       }
       setFavouriteItems(itemsDetails);
@@ -67,14 +72,14 @@ const Favourites = () => {
 
   return (
     <div className="bg-gray-900 pb-4 px-12 min-h-screen flex flex-col flex-grow">
-      <h1 className="mt-0 pt-20 ml-0 text-3xl m-10">Favourite Items</h1>
+      <h1 className="mt-0 pt-20 ml-0 text-3xl m-10">Favourites</h1>
       {favouriteItems.length > 0 ? (
         <div className="flex flex-wrap justify-around">
           {favouriteItems.map((item, index) => (
             <Cards
               key={item.id}
               movie={item}
-              title={item.title || item.name}
+              title={item.title || item.name} //no practical usage as such here
               index={index}
             />
           ))}

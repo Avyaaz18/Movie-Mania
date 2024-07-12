@@ -12,6 +12,8 @@ Welcome to Movie Mania, your ultimate destination for all movies! This project i
 - Google authentication using Firebase for user sign-in.
 - Watch trailers directly from YouTube for selected movies.
 - Save your favorite movies and TV shows to easily access them later.
+- Rate movies and TV shows.
+- [Quick tour](<](https://github.com/Avyaaz18/Movie-Mania/blob/main/src/assets/Videos/MovieMania.mp4)>) of the website available in the About section.
 
 <!-- ## 🖼️Screenshots
 
@@ -58,7 +60,7 @@ To deploy your own instance, follow these steps:
 
 ## 🔮Future Enhancements
 
-- Implement user reviews and ratings for movies.
+- Implement user reviews for movies.
 - Enhance search functionality with autocomplete suggestions.
 - Integrate more social login options (e.g., Facebook, Twitter).
 

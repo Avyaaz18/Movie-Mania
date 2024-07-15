@@ -21,7 +21,7 @@ const ScrollableCarousel = ({ title, fetchUrl }) => {
     try {
       let res = await fetch(fetchUrl);
       let data = await res.json();
-      setData(data.results);
+      if (data && data.results) setData(data.results);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -30,6 +30,8 @@ const ScrollableCarousel = ({ title, fetchUrl }) => {
   useEffect(() => {
     getData();
   }, [fetchUrl]);
+
+  if (!data.length) return null;
 
   return (
     <div className="container mx-auto px-4  ">

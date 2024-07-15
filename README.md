@@ -40,12 +40,22 @@ To run this project locally, follow these steps:
 1. Clone the repository.
 2. Install dependencies using `npm install`.
 3. Generate API keys for Firebase and TMDb.
+
    - Create a Firebase project and generate Firebase Web API keys.
    - Sign up for a TMDb API key and store it in your `.env` file.
+
    ```plaintext
    VITE_FIREBASE_API_KEY=your_firebase_api_key
+   VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+   VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
+   VITE_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+   VITE_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
+   VITE_FIREBASE_APP_ID=your_firebase_app_id
+   VITE_FIREBASE_MEASUREMENT_ID=your_firebase_measurement_id
+
    VITE_TMDB_API_KEY=your_tmdb_api_key
    ```
+
 4. Start the development server with `npm run dev`.
 
 ## 🌐Deployment
@@ -62,7 +72,6 @@ To deploy your own instance, follow these steps:
 
 - Implement user reviews for movies.
 - Enhance search functionality with autocomplete suggestions.
-- Integrate more social login options (e.g., Facebook, Twitter).
 
 ## Acknowledgments
 
